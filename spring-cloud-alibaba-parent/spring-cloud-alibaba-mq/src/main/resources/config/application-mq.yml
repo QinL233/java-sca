@@ -1,0 +1,7 @@
+spring:
+  cloud:
+    # mq 配置
+    stream:
+      rocketmq:
+        binder:
+          name-server: ${rocket.host:localhost}:${rocket.port:9876}

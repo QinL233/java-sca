@@ -1,0 +1,7 @@
+logging:
+  config: classpath:log/logback-spring.xml
+  file:
+    path: log
+#logstash地址
+logstash:
+  server: ${elk.host:localhost}:${elk.port:5044}

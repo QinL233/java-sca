@@ -1,0 +1,29 @@
+spring:
+  datasource:
+    url: jdbc:mysql://${mysql.host:localhot}:${mysql.port:3306}/${mysql.database:mysql}?createDatabaseIfNotExist=true&useUnicode=true&characterEncoding=utf8&allowPublicKeyRetrieval=true&useSSL=false&serverTimezone=Asia/Shanghai&allowMultiQueries=true&useAffectedRows=true
+    username: ${mysql.username:root}
+    password: ${mysql.password:root}
+  cloud:
+    alibaba:
+      seata:
+        tx-service-group: seata-server
+
+seata:
+  enabled: true
+  service:
+    grouplist:
+      default: ${seata.host:localhost}:${seata.port:8091}
+    vgroup-mapping:
+      seata-server: default
+    disable-global-transaction: false
+  client:
+    undo:
+      log-serialization: protostuff
+
+mybatis:
+  mapper-locations:
+  - classpath:mapper/**/*.xml
+
+#mybatis-plus:
+#  configuration:
+#    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl

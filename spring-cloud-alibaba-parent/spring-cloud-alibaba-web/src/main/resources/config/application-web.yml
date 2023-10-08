@@ -1,0 +1,16 @@
+spring:
+  main:
+    # 设置允许bean名称相同并覆盖
+    allow-bean-definition-overriding: true
+
+# 自定义线程配置
+thread:
+  core_pool_size: 20
+  max_pool_size: 100
+  queue_capacity: 1000
+  prefix: ${spring.application.name}
+
+# header配置
+header:
+  token: token
+  uuap_login_user: UUAP_LOGIN_USER

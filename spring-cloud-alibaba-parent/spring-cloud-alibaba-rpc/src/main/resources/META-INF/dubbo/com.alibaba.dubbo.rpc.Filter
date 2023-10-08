@@ -1,0 +1,2 @@
+consumerFilter=com.baidu.sz.rpc.filter.ConsumerFilter
+providerFilter=com.baidu.sz.rpc.filter.ProviderFilter

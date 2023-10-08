@@ -1,0 +1,51 @@
+spring:
+  cloud:
+    # nacos 基础配置
+#    nacos:
+#      discovery:
+#        server-addr: ${cloud.host:localhost}:8848
+#        group: ${cloud.group}
+#        namespace: ${cloud.namespace}
+    # sentinel 基础配置
+    sentinel:
+      eager: true
+      transport:
+        dashboard: ${sentinel.host:localhost}:${sentinel.port:8858}
+        client-ip: ${server.host}
+
+dubbo:
+  application:
+    metadata-type: remote
+  # @DubboService注解提供服务的包路径
+  scan:
+    base-packages: ${server.service-packages}
+  # dubbo协议配置
+  protocol:
+    name: tri
+    host: ${server.host}
+    port: ${dubbo.port}
+    charset: UTF-8
+  # 消费者配置
+  consumer:
+    # 超时时间
+    timeout: 5000
+    # 重试次数
+    retries: 0
+    # 是否校验服务（懒加载）
+    check: false
+    # 自定义过滤器
+    filter: consumerFilter
+  # 提供者配置
+  provider:
+    # 自定义过滤器
+    filter: providerFilter
+  # 微服务配置
+#  cloud:
+#    # 订阅服务
+#    subscribed-services: ${cloud.subscribed-services}
+  registry:
+    register-mode: instance
+    address: nacos://${nacos.host:localhost}:${nacos.port:8848}
+    group: ${nacos.group}
+    parameters.namespace: ${nacos.namespace}
+    parameters.registry-type: service
